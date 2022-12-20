@@ -8,7 +8,6 @@ def preview(prefix_dict, suffix_dict):
     # for episode_id in episodes_list:
         id2str = '%02d' % episode_id
         check_file_name = candidate_prefix + id2str + suffix_dict[episode_id]
-        ic(check_file_name)
         if checkFile(check_file_name):
             print(colored('\u2714', 'green'), end = " ")
             print(colored("{}".format(check_file_name), 'magenta'), end = "")
