@@ -25,6 +25,15 @@ def inputParameters():
         required=True
     )
     parser.add_argument(
+        "-pre",
+        "--prefix",
+        help="是否自己指定prefix",
+        dest="prefix",
+        type=str,
+        choices=["yes", "no"],
+        default="no"
+    )
+    parser.add_argument(
         "-S",
         "--season",
         help="节目的季，默认第一季",
@@ -36,9 +45,11 @@ def inputParameters():
     args = parser.parse_args()
 
     glv._set("debug",args.debug)
+    glv._set("prefix",args.prefix)
     glv._set("path",args.path)
     glv._set("season",args.season)
     passPrint("parameter debug is : %s " % args.debug)
+    passPrint("parameter prefix is : %s " % args.prefix)
     passPrint("parameter path is : %s " % args.path)
     passPrint("parameter season is : %s " % args.season)
     print("")

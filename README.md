@@ -10,7 +10,10 @@
 ```
 python -m venv myVenv
 .\myVenv\Scripts\activate # PowerShell active command
+python ./src/main.py -d yes -p 'X:\Videos\anime\清恋[VCB-Studio] Seiren [Ma10p_1080p]' -pre yes -S 1
 ```
+字幕文件批量重命名推荐SubRenamer
+
 ## motivation
 
 一开始玩jellyfin，用tinymediamanager刮削。发现会有![](https://shaojiemike.oss-cn-hangzhou.aliyuncs.com/img/20221220160532.png)的问题。
