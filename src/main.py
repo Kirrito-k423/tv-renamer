@@ -2,9 +2,10 @@
 import config
 from input_process import inputParameters, isIceEnable
 from Candidate import findCandidateList
-from preview import preview
+from preview import preview, previewWithOffset
 from tsjPython.tsjCommonFunc import *
 from rename import apply_rename
+import global_variable as glv
 
 if __name__ == '__main__':
     args = inputParameters()
@@ -15,6 +16,21 @@ if __name__ == '__main__':
     rename_dict = preview(prefix_dict, suffix_dict)
 
     # 预览判断
+    if glv._get("number") == 'yes':
+        # 询问用户是否需要编号便宜
+        colorPrint("[You Choose offset num option]If you want to use the above replace strategy:(y to continue)\
+                    or \n (o to input offset num)","cyan")
+        user_option = input()
+        if user_option == 'y':
+            apply_rename(rename_dict)
+            passPrint("重命名完毕")
+        elif user_option == 'o':
+            colorPrint("Pleas input your offset num:","cyan")
+            offset_num = int(input())
+            rename_dict = previewWithOffset(prefix_dict, suffix_dict, offset_num)
+        else:
+            errorPrint("QUIT!!!")
+    
     colorPrint("If you want to use the above replace strategy:(y to continue)","cyan")
     user_option = input()
     if user_option == 'y':

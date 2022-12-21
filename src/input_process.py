@@ -42,16 +42,28 @@ def inputParameters():
         default=1
     )
 
+    parser.add_argument(
+        "-n",
+        "--num",
+        help="是否从1给级数编号",
+        dest="number",
+        type=str,
+        choices=["yes", "no"],
+        default="no"
+    )
+
     args = parser.parse_args()
 
     glv._set("debug",args.debug)
     glv._set("prefix",args.prefix)
     glv._set("path",args.path)
     glv._set("season",args.season)
+    glv._set("number",args.number)
     passPrint("parameter debug is : %s " % args.debug)
     passPrint("parameter prefix is : %s " % args.prefix)
     passPrint("parameter path is : %s " % args.path)
     passPrint("parameter season is : %s " % args.season)
+    passPrint("parameter number is : %s " % args.number)
     print("")
     return args
 
