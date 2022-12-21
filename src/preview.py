@@ -16,8 +16,18 @@ def preview(prefix_dict, suffix_dict):
             print(colored("{}".format(dest_file_name), 'green'))
             rename_dict[check_file_name]=dest_file_name
         else:
-            print(colored('\u2718', 'red'), end = " ")
-            print(colored("{}".format(check_file_name), 'red'), end = "")   
+            id2str = str(episode_id)
+            check_file_name = candidate_prefix + id2str + suffix_dict[episode_id]
+            if checkFile(check_file_name):
+                print(colored('\u2714', 'green'), end = " ")
+                print(colored("{}".format(check_file_name), 'magenta'), end = "")
+                print(colored(' -> ', 'white'), end = "")
+                dest_file_name = destFileName(candidate_prefix, suffix_dict[episode_id], '%02d' % episode_id)
+                print(colored("{}".format(dest_file_name), 'green'))
+                rename_dict[check_file_name]=dest_file_name
+            else:
+                print(colored('\u2718', 'red'), end = " ")
+                print(colored("{}".format(check_file_name), 'red'))   
     return rename_dict
 
 def checkFile(filename):
