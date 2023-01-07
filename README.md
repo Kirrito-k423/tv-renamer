@@ -1,6 +1,9 @@
 # tv-renamer
 
 
+推荐：http://www.den4b.com/products/renamer
+
+（网上冲浪完之后才发现，已经有功能更全面的图形化界面的软件了。白写了，虽然也没写几个小时）
 ## Usage
 
 ```
