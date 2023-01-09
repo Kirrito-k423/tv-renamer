@@ -3,6 +3,8 @@
 
 推荐：http://www.den4b.com/products/renamer
 
+![](https://shaojiemike.oss-cn-hangzhou.aliyuncs.com/img/20230109200339.png)
+
 （网上冲浪完之后才发现，已经有功能更全面的图形化界面的软件了。白写了，虽然也没写几个小时）
 ## Usage
 
