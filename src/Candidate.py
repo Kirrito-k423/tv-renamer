@@ -8,13 +8,15 @@ def findCandidateList(path):
     file_name_list=os.listdir(path)
     ic(file_name_list)
     if glv._get("prefix")=="no":
-        return regexCandidateList(file_name_list)
+        # return regexCandidateList(file_name_list)
+        errorPrint("The code is archived")
     else:
         return selfRegexCandidateList(file_name_list)
 
 def selfRegexCandidateList(file_name_list):
     suffix_dict = dict()
     prefix_dict = dict()
+    media_type_list = set()
     colorPrint("Please input regex prefix","cyan")
     prefix = input()
     prefixRegex = toRegex(prefix)
@@ -32,9 +34,17 @@ def selfRegexCandidateList(file_name_list):
             suffix = matchObj.group(2)
             media_type = matchObj.group(3)
             prefix_dict[episodes_num]=prefix
-            suffix_dict[episodes_num]=suffix+media_type
+            if episodes_num in suffix_dict:
+                if suffix_dict[episodes_num]==suffix:
+                    media_type_list.add(media_type)
+                else:
+                    continue
+            else:
+                suffix_dict[episodes_num]=suffix
+                media_type_list.add(media_type)
             print(colored("{}".format(episodes_num), 'yellow'), end = " ")
-    return [prefix_dict, suffix_dict]
+    print("\n")
+    return [prefix_dict, suffix_dict, media_type_list]
 
 def regexCandidateList(file_name_list):
     [tmp_prefix, tmp_suffix] = findCandidatePrefixsuffix(file_name_list)

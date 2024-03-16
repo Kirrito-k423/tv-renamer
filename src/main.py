@@ -11,9 +11,9 @@ if __name__ == '__main__':
     args = inputParameters()
     isIceEnable(args.debug)
     # 正则寻找候选列表
-    [prefix_dict, suffix_dict] = findCandidateList(args.path)
+    [prefix_dict, suffix_dict, media_type_list] = findCandidateList(args.path)
     # 预览修改效果
-    rename_dict = preview(prefix_dict, suffix_dict)
+    rename_dict = preview(prefix_dict, suffix_dict, media_type_list)
 
     # 预览判断
     if glv._get("number") == 'yes':
@@ -25,16 +25,17 @@ if __name__ == '__main__':
             apply_rename(rename_dict)
             passPrint("重命名完毕")
         elif user_option == 'o':
-            colorPrint("Pleas input your offset num:","cyan")
+            colorPrint("Pleas input your offset num: ( -2 means S01E01 -> S01E03)","cyan")
             offset_num = int(input())
-            rename_dict = previewWithOffset(prefix_dict, suffix_dict, offset_num)
+            rename_dict = previewWithOffset(prefix_dict, suffix_dict, media_type_list, offset_num)
+            colorPrint("If you want to use the above replace strategy:(y to continue)","cyan")
+            user_option = input()
+            if user_option == 'y':
+                apply_rename(rename_dict)
+                passPrint("重命名完毕")
+            else:
+                errorPrint("QUIT!!!")
         else:
             errorPrint("QUIT!!!")
     
-    colorPrint("If you want to use the above replace strategy:(y to continue)","cyan")
-    user_option = input()
-    if user_option == 'y':
-        apply_rename(rename_dict)
-        passPrint("重命名完毕")
-    else:
-        errorPrint("QUIT!!!")
+    
