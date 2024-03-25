@@ -13,7 +13,7 @@ python -m venv myVenv
 .\myVenv\Scripts\activate # PowerShell active command
 python ./src/main.py -d yes -p 'X:\Videos\anime\清恋[VCB-Studio] Seiren [Ma10p_1080p]' -pre yes -S 1
 ```
-字幕文件批量重命名推荐SubRenamer
+字幕文件批量重命名推荐[SubRenamer](https://github.com/qwqcode/SubRenamer)
 
 ## Example
 

@@ -7,11 +7,13 @@ def previewWithOffset(prefix_dict, suffix_dict, media_type_list, offset_num):
     for episode_id, candidate_prefix in prefix_dict.items():
     # for episode_id in episodes_list:
         for media_type in media_type_list:
-            suffix_name = suffix_dict[episode_id] + media_type
+            if glv._get("delete")=="yes":
+                suffix_name = media_type
+            else:
+                suffix_name = suffix_dict[episode_id] + media_type       
             # [FreeSub&VCB-S&ANK-Raws] Noragami Aragoto [OAD
-            ic(suffix_name)
             id2str = '%02d' % episode_id
-            check_file_name = candidate_prefix + id2str + suffix_name
+            check_file_name = candidate_prefix + id2str + suffix_dict[episode_id] + media_type
             if checkFile(check_file_name):
                 print(colored('\u2714', 'green'), end = " ")
                 print(colored("{}".format(check_file_name), 'magenta'), end = "")
@@ -38,9 +40,12 @@ def preview(prefix_dict, suffix_dict, media_type_list):
     for episode_id, candidate_prefix in prefix_dict.items():
     # for episode_id in episodes_list:
         for media_type in media_type_list:
-            suffix_name = suffix_dict[episode_id] + media_type
+            if glv._get("delete")=="yes":
+                suffix_name = media_type
+            else:
+                suffix_name = suffix_dict[episode_id] + media_type           
             id2str = '%02d' % episode_id
-            check_file_name = candidate_prefix + id2str + suffix_name
+            check_file_name = candidate_prefix + id2str + suffix_dict[episode_id] + media_type
             if checkFile(check_file_name):
                 print(colored('\u2714', 'green'), end = " ")
                 print(colored("{}".format(check_file_name), 'magenta'), end = "")
@@ -66,4 +71,8 @@ def checkFile(filename):
     return os.path.exists(glv._get("path")+'\\'+filename)
 
 def destFileName(candidate_prefix, candidate_suffix, id2str):
-    return "S{}E{} {}{}".format('%02d' % glv._get("season"),id2str,candidate_prefix,candidate_suffix)
+    if glv._get("delete")=="yes":
+        # ic(id2str,candidate_suffix)
+        return "S{}E{}{}".format('%02d' % glv._get("season"),id2str,candidate_suffix)
+    else:
+        return "S{}E{} {}{}".format('%02d' % glv._get("season"),id2str,candidate_prefix,candidate_suffix)

@@ -8,6 +8,15 @@ def inputParameters():
     parser = argparse.ArgumentParser()
     parser.description = "please enter some parameters"
     parser.add_argument(
+        "-a",
+        "--abandon",
+        help="是否删除除开SXXEXX之外的信息",
+        dest="delete",
+        type=str,
+        choices=["yes", "no"],
+        default="no",
+    )
+    parser.add_argument(
         "-d",
         "--debug",
         help="是否打印Debug信息 is print debug informations",
@@ -54,12 +63,14 @@ def inputParameters():
 
     args = parser.parse_args()
 
+    glv._set("delete",args.delete)
     glv._set("debug",args.debug)
     glv._set("prefix",args.prefix)
     glv._set("path",args.path)
     glv._set("season",args.season)
     glv._set("number",args.number)
     passPrint("parameter debug is : %s " % args.debug)
+    passPrint("parameter delete is : %s " % args.delete)
     passPrint("parameter prefix is : %s " % args.prefix)
     passPrint("parameter path is : %s " % args.path)
     passPrint("parameter season is : %s " % args.season)
