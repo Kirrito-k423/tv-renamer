@@ -17,7 +17,7 @@ if __name__ == '__main__':
 
     # 预览判断
     if glv._get("number") == 'yes':
-        # 询问用户是否需要编号便宜
+        # 询问用户是否需要编号偏移
         colorPrint("[You Choose offset num option]If you want to use the above replace strategy:(y to continue)\
                     or \n (o to input offset num)","cyan")
         user_option = input()
@@ -37,5 +37,13 @@ if __name__ == '__main__':
                 errorPrint("QUIT!!!")
         else:
             errorPrint("QUIT!!!")
-    
+    else:
+        colorPrint("If you want to use the above replace strategy:(y to continue)\
+                    or \n (o to input offset num)","cyan")
+        user_option = input()
+        if user_option == 'y':
+            apply_rename(rename_dict)
+            passPrint("重命名完毕")
+        else:
+            errorPrint("QUIT!!!")
     
